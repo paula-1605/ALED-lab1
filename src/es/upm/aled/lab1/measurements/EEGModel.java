@@ -133,6 +133,7 @@ public class EEGModel {
 		// TODO
 		File f = new File(fileName);
 		FileOutputStream fis = new FileOutputStream(f);
+		String line;
 	}
 
 	/**
