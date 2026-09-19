@@ -131,9 +131,18 @@ public class EEGModel {
 	 */
 	public void saveFile(String fileName) throws IOException {
 		// TODO
-		File f = new File(fileName);
-		FileOutputStream fis = new FileOutputStream(f);
-		String line;
+		File file = new File(fileName);
+		FileOutputStream fileOutputStream = new FileOutputStream(file);
+		PrintStream ps= new PrintStream (fileOutputStream);
+		
+		int index= 0;
+		for(Measurement m: this.measurements) {
+			ps.print((index++)%256);
+			for (int i= 0; i<m.numChannels();i++)
+				ps.print(", "+m.getChannel(i));
+			ps.println();
+		
+		}
 	}
 
 	/**
