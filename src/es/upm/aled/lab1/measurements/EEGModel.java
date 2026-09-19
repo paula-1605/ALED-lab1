@@ -138,7 +138,11 @@ public class EEGModel {
 		int index= 0;
 		for(Measurement m: this.measurements) {
 			ps.print((index++)%256);
-			
+			for(int i=0; i<m.numChannels();i++) {
+				ps.print(", " + m.getChannel(i));
+			ps.println();
+			}
+				
 		
 		}
 	}
