@@ -137,12 +137,13 @@ public class EEGModel {
 		
 		int index= 0;
 		for(Measurement m: this.measurements) {
-			ps.print((index++)%256);
+			ps.print((index)%256);
+			index ++;
 			for(int i=0; i<m.numChannels();i++) {
 				ps.print(", " + m.getChannel(i));
 			ps.println();
 			}
-				
+			ps.close();	
 		
 		}
 	}
@@ -267,6 +268,12 @@ public class EEGModel {
 		} else {
 			EEGModel eeg = new EEGModel();
 			eeg.createSyntheticData(1000);
+			try {
+				eeg.saveFile("Synthetic.txt");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			// TODO
 			
 		}
