@@ -57,7 +57,9 @@ public class EEGModel {
 	 */
 	public EEGModel(Measurement[] measurements) {
 		// TODO
-		
+		for(Measurement m :measurements)
+		//this.measurements.add(m); está bien pero uso un método ya creado
+		this.addMeasurement(m);
 	}
 
 	/**
@@ -90,8 +92,7 @@ public class EEGModel {
 	 */
 	public EEGModel filter(Filter filter) {
 		// TODO
-		
-		return null;
+		return filter.applyFilter(this);
 	}
 
 	/**
@@ -264,6 +265,15 @@ public class EEGModel {
 			EEGModel eeg = new EEGModel(args[0]);
 			eeg.plotData();
 			// TODO
+			int min =2750;
+			int max = 5750;
+			int[] validChannels = {8,9,10};
+			
+			eeg=eeg.filter(new FilterExtractPeriod (min,max));
+			eeg=eeg.filter(new FilterExtractChannels(validChannels));
+			
+			eeg.plotData();
+			
 			
 		} else {
 			EEGModel eeg = new EEGModel();
